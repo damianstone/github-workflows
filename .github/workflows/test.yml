@@ -1,0 +1,8 @@
+name: Test Project
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # download the code from the github repo into the runner 
+      - name: Get code
