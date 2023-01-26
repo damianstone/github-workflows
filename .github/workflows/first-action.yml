@@ -21,5 +21,14 @@ jobs:
       - name: Print something again
         run: echo "Goodbye"
   
-
+  second-job:
+    runs-on: ubuntu-latest
+    steps:
+      # 
+      - name: Print something
+      # run multitple commands syntax
+        run: |
+            echo "1"
+            echo "2"
+            echo "3"
   
