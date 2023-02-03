@@ -4,6 +4,17 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      # download the code from the github repo into the runner 
+      # first step => download the code from the github repo into the runner 
       - name: Get code
-      
+        uses: actions/checkout@v3 # the action we gonna use from Github Actions
+      # second step => make sure we have node js and the dependencies (in this ubuntu-lastest already have node)
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with: # basically extra things and config we can add for the checkout action
+          node-version: 18
+      - name: Install Dependencies
+        run: npm ci # install dependecies using the exact same versions we have in the project
+      - name: Run tests
+        run: npm test
+
+
