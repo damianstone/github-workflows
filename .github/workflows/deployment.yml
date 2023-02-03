@@ -1,5 +1,5 @@
 name: Deployment Workflow
-on: push
+on: [push, workflow_dispatch] # multiple event triggers
 jobs:
   # by default these 2 jobs (test and deploy) run in parallel - at the same time
   test:
