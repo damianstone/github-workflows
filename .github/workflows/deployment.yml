@@ -29,7 +29,7 @@ jobs:
       - name: Install Dependencies
         run: npm ci
       - name: Build project
-        run: npm build
+        run: npm run build
       - name: Deploy to the server
         run: echo "deploying to the server"
 
