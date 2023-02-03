@@ -1,6 +1,7 @@
 name: Deployment Workflow
 on: push
 jobs:
+  # by default these 2 jobs (test and deploy) run in parallel - at the same time
   test:
     runs-on: ubuntu-latest
     steps:
@@ -18,6 +19,7 @@ jobs:
       - name: Run tests
         run: npm test
   deploy:
+    needs: test # to execute this job once test job is completed, basically make the jobs run one by one - not parallel
     runs-on: ubuntu-latest    
     steps:
       - name: Get code
