@@ -1,4 +1,4 @@
-name: Events Demo 1
+name: Events Demo 1 changed
 on: 
   pull_request:
     # activity types
