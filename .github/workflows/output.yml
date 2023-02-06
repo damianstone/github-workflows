@@ -6,4 +6,4 @@ jobs:
     steps:
       - name: Output GitHub context
         # this syntaxt is called "expression"
-        run: echo "${{ toJSON(github) }}" # access to metadata available from github
+        run: echo "${{ toJSON(github.event) }}" # access to metadata available from github - env variables for example
