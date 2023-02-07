@@ -1,11 +1,11 @@
 name: Events Demo 1 changed
 on: 
+  workflow_dispatch:
   pull_request:
     # activity types
     # we trigger the workflow when the pull request is opened or edited
     types: [opened, edited]
     branches: [main, 'dev-*', 'feat/**']
-  workflow_dispatch:
   # the workflow is activated when push to one the branches but we did not change a file in paths-ignore
   push: 
     branches: [main, develop]
