@@ -1,4 +1,4 @@
-name: Events Demo 1 changed
+name: Triggers & filters
 on: 
   workflow_dispatch:
   pull_request:
