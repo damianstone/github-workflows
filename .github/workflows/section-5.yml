@@ -36,5 +36,12 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      # once we have stored the build folder in the artifact, we can download and deploy it
+      - name: Get build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-files
+      - name: Output contents
+        run: ls
       - name: Deploy
         run: echo "Deploying..."
