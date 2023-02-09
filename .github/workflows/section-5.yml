@@ -16,6 +16,9 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
+    outputs:
+      # steps is a context value from github for information about the steps
+      script-file: ${{ steps.publish.outputs.something }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -23,6 +26,11 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run build
+      # allows the result to be passed as an output variable to the next steps in the workflow or to be used outside of the workflow
+      - name: Publish JS filename
+        id: publish # we use this id to then be able to access to this step using the step context
+        # 'something' in this case is just the name we give to the output
+        run: find dist/assets/*.js -type f -execdir echo 'something={}' >> $GITHUB_OUTPUT ';'
       # uploading job artifacts using an action => https://github.com/actions/upload-artifact
       # basically this is to store the output of the build job (build folder)
       - name: Upload artifacts
@@ -43,5 +51,8 @@ jobs:
           name: dist-files
       - name: Output contents
         run: ls
+      - name: Output filename
+        # get data from the build job
+        run: echo "${{ needs.build.outputs.script-file }}"
       - name: Deploy
         run: echo "Deploying..."
