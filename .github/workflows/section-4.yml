@@ -1,4 +1,4 @@
-name: Triggers & filters
+name: Section-4
 on: 
   workflow_dispatch:
   pull_request:

@@ -1,6 +1,6 @@
 
 # just the workflow name
-name: First Workflow
+name: Hello World
 
 # on is when to activate the workflow, there is many ways of trigger it
 on: workflow_dispatch

@@ -1,4 +1,4 @@
-name: Artifact
+name: Section-5
 on:
   push:
     branches:
@@ -9,6 +9,13 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
+        # caching dependencies 
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          # we use this key to retrieve this cache in the future
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
       - name: Test code
@@ -18,10 +25,18 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       # steps is a context value from github for information about the steps
+      # the name "script-file" is also invented
       script-file: ${{ steps.publish.outputs.something }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
+      # caching dependencies 
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          # we use this key to retrieve this cache in the future
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
       - name: Build website
