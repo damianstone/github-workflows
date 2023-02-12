@@ -7,9 +7,9 @@ on:
         required: false
         default: dist
         type: string
-      secrets: # secrets needed by this workflow
-        some-secret:
-          required: false
+      # secrets: # secrets needed by this workflow
+      #   some-secret:
+      #     required: false
     outputs:
       result:
         description: The result of the deployment operation
