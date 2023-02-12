@@ -72,7 +72,7 @@ jobs:
           path: dist
   deploy:
     needs: build
-    uses: ./.github/workflows/reuse.yml # using a reusable workflow
+    uses: /.github/workflows/reuse.yml # using a reusable workflow
     with:
       artifact-name: dist-files
   print-deploy-result:
