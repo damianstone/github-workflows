@@ -30,4 +30,4 @@ jobs:
       - name: Deploy
         run: echo "Deploying..."
       - name: Set result output
-        run: echo "::set-output name=step-result::success"
+        run: echo "step-result::success" >> $GITHUB_OUTPUT
