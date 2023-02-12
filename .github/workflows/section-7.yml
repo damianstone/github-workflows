@@ -37,7 +37,9 @@ jobs:
         run: npm run test
         # control execution to upload the test report even if the test step fails
       - name: Upload test report
-        if: steps.run-test.outcome == 'failure' # return if the step fails or not
+        # failure() is a special conditional function from GH actios
+        # using this function we make sure that the step that failed was the previous one
+        if: failure() && steps.run-test.outcome == 'failure'
         uses: actions/upload-artifact@v3
         with:
           name: test-report
