@@ -35,6 +35,7 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true' # if no cache then run npm ci
         run: npm ci
       - name: Test code
+        continue-on-error: true # continue the execution even if this step fails, treat this step as a success
         id: run-test # to reference this step
         run: npm run test
         # control execution to upload the test report even if the test step fails
@@ -71,16 +72,15 @@ jobs:
           path: dist
   deploy:
     needs: build
-    runs-on: ubuntu-latest
+    uses: ./.github/workflows/reuse.yml # using a reusable workflow
+    with:
+      artifact-name: dist-files
+  print-deploy-result:
+    needs: deploy
+    runs-on: deploy
     steps:
-      - name: Get build artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: dist-files
-      - name: Output contents
-        run: ls
-      - name: Deploy
-        run: echo "Deploying..."
+      - name: Print deploy output
+        run: echo "${{ needs.deploy.outputs.result }}"
   # run this job if and only if another job fails
   report:
     needs: [lint, deploy]
