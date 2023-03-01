@@ -6,8 +6,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # Dependency directories
-node_modules/
-node_modules/**
+/node_modules/
+/node_modules/**
 
 # Build output
 build/
@@ -16,7 +16,7 @@ build/
 coverage/
 
 # Production
-dist/
+/dist/
 
 # IDEs and editors
 .idea
